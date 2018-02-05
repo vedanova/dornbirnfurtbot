@@ -10,16 +10,13 @@ defmodule Dornbirnfurtbot do
 
   ## Examples
 
-      iex> {:ok, pid} = Dornbirnfurtbot.start(1, 2)
-      iex>  = is_pid(pid)
-      iex> true == pid_returned
-      true
+      iex> {:ok, pid} = Dornbirnfurtbot.start
 
   """
-  def start(_type, _args) do
+  def start() do
     import Supervisor.Spec, warn: false
 
-    envport = System.get_env("PORT") || 5001
+    envport = System.get_env("PORT") || 5002
 
     port =
       case envport do

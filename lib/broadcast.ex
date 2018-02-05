@@ -3,7 +3,7 @@ defmodule Dornbirnfurtbot.Broadcast do
   Sends out message to broadcast receivers
 
   ## Examples
-  
+
       iex> Dornbirnfurtbot.Broadcast.broadcast "Test broadcast"
   """
   def broadcast(message, notification_type \\ "NO_PUSH") do
