@@ -1,5 +1,5 @@
 defmodule Dornbirnfurtbot.Router do
-  alias Dornbirnfurtbot.{Waterlevel}
+  alias Dornbirnfurtbot.{Waterlevel, Router}
   import Plug.Conn
   use Plug.Router
   require Logger
@@ -18,7 +18,7 @@ defmodule Dornbirnfurtbot.Router do
   forward(
     "/webhook",
     to: FacebookMessenger.Router,
-    message_received: &Dornbirnfurtbot.Router.message/1
+    message_received: &Router.message/1
   )
 
   # TTN Payload

@@ -15,7 +15,7 @@ defmodule Dornbirnfurtbot.Waterlevel do
 
   def start_link(state \\ []), do: GenServer.start_link(__MODULE__, state, name: __MODULE__)
 
-  def init(_name) do
+  def init do
     {:ok, %{waterlevel: 0, state: :initialized}}
   end
 

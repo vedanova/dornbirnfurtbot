@@ -6,7 +6,14 @@ defmodule Dornbirnfurtbot.Broadcast do
 
       iex> Dornbirnfurtbot.Broadcast.broadcast "Test broadcast"
   """
-  def broadcast(message, notification_type \\ "NO_PUSH") do
-    FacebookMessenger.Sender.text_broadcast(message, "TRANSPORTATION_UPDATE", notification_type)
+  @fb_api Application.fetch_env!(:dornbirnfurtbot, :broadcaster)
+
+  defmodule Behaviour do
+    @callback broadcast([key: String.t]) :: :ok
+  end
+
+
+  def broadcast(broadcaster \\ @fb_api, message, notification_type \\ "NO_PUSH") do
+    @fb_api.text_broadcast(message, "TRANSPORTATION_UPDATE", notification_type)
   end
 end
