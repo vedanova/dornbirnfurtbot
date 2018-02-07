@@ -27,7 +27,6 @@ defmodule Dornbirnfurtbot.Waterlevel do
   def handle_call({:new_height, height}, _from, state_data) do
     state_data
     |> check(height)
-    |> IO.inspect(label: "data")
     |> reply_success(:ok)
   end
 
