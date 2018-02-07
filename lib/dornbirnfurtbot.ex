@@ -16,12 +16,10 @@ defmodule Dornbirnfurtbot do
   def start() do
     import Supervisor.Spec, warn: false
 
-    envport = System.get_env("PORT") || 5002
-
     port =
-      case envport do
-        envport when is_binary(envport) -> envport |> String.to_integer()
-        _ -> envport
+      case System.get_env("PORT") do
+        port when is_binary(port) -> port |> String.to_integer()
+        _ -> 5002
       end
 
     Logger.info("Started application")
