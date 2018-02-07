@@ -1,4 +1,5 @@
-defmodule Dornbirnfurtbot.FacebookBroadcast do
+defmodule Dornbirnfurtbot.Broadcast.Facebook do
+  require Poison
   @behaviour Dornbirnfurtbot.Broadcast
 
   @doc ~S"""

@@ -16,7 +16,7 @@ defmodule Dornbirnfurtbot.Waterlevel do
 
   def start_link(state \\ []), do: GenServer.start_link(__MODULE__, state, name: __MODULE__)
 
-  def init do
+  def init(_arg) do
     {:ok, %{waterlevel: 0, state: :initialized}}
   end
 
@@ -29,10 +29,6 @@ defmodule Dornbirnfurtbot.Waterlevel do
     |> check(height)
     |> IO.inspect(label: "data")
     |> reply_success(:ok)
-  end
-
-  def demo_cast(pid, new_value) do
-    GenServer.cast(pid, {:demo_cast, new_value})
   end
 
   # flodded && alarm sent already
