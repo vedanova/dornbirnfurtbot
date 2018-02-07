@@ -24,7 +24,8 @@ defmodule Dornbirnfurtbot.MixProject do
       {:facebook_messenger,
        git: "https://github.com/corck/facebook_messenger.git", branch: "broadcast-functionality"},
       {:plug, "~> 1.4.0"},
-      {:cowboy, "~> 1.1.0"}
+      {:cowboy, "~> 1.1.0"},
+      {:mox, "~> 0.3.1"}
     ]
   end
 end

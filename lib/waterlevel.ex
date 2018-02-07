@@ -1,8 +1,9 @@
 defmodule Dornbirnfurtbot.Waterlevel do
   require IEx
   use GenServer
-  require Logger
   alias __MODULE__
+
+  @broadcaster Application.fetch_env!(:dornbirnfurtbot, :broadcaster)
 
   defstruct waterlevel: 0,
             state: :initialized
@@ -42,7 +43,7 @@ defmodule Dornbirnfurtbot.Waterlevel do
   # flodded
   def check(%{state: :warned} = state_data, height) when alert_level(height) do
     message = "Die Furt ist gesperrt. Höhe: #{inspect(height)}"
-    Dornbirnfurtbot.Broadcast.broadcast(message, "REGULAR")
+    @broadcaster.broadcast(message, "REGULAR")
     %{state_data | state: :flodded, waterlevel: height}
   end
 
@@ -54,7 +55,7 @@ defmodule Dornbirnfurtbot.Waterlevel do
   # flodded, returns back to warn level to not alarm twice
   def check(%{state: :flodded} = state_data, height) when warn_level(height) do
     message = "Die Furt wird wahrscheinlich bald wieder offen sein. Höhe: #{inspect(height)}"
-    Dornbirnfurtbot.Broadcast.broadcast(message, "REGULAR")
+    @broadcaster.broadcast(message, "REGULAR")
     %{state_data | state: :level_drop, waterlevel: height}
   end
 
@@ -66,7 +67,7 @@ defmodule Dornbirnfurtbot.Waterlevel do
   # notify soon flodded
   def check(%{state: :normal} = state_data, height) when warn_level(height) do
     message = "Die Furt wird vielleicht bald geschlossen sein"
-    Dornbirnfurtbot.Broadcast.broadcast(message, "REGULAR")
+    @broadcaster.broadcast(message, "REGULAR")
     %{state_data | state: :warned, waterlevel: height}
   end
 
