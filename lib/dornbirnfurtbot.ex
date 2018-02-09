@@ -13,7 +13,7 @@ defmodule Dornbirnfurtbot do
       iex> {:ok, pid} = Dornbirnfurtbot.start
 
   """
-  def start() do
+  def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
     port =
