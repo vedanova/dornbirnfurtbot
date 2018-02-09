@@ -14,6 +14,7 @@ defmodule Dornbirnfurtbot.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      mod: {Dornbirnfurtbot, []},
       extra_applications: [:logger, :plug, :cowboy, :facebook_messenger]
     ]
   end
