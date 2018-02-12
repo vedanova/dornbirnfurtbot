@@ -1,5 +1,5 @@
 defmodule Dornbirnfurtbot.Alexa.Skill do
-  use Alexa.Skill, app_id: "dornbirn_furt"
+  use Alexa.Skill, app_id: "amzn1.ask.skill.beaece9c-f348-45ab-afff-247f1f1e2185"
   alias Dornbirnfurtbot.{Waterlevel, Router}
 
   def handle_intent("SayHello", request, response) do
