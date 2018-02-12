@@ -15,7 +15,7 @@ defmodule Dornbirnfurtbot.MixProject do
   def application do
     [
       mod: {Dornbirnfurtbot, []},
-      extra_applications: [:logger, :plug, :cowboy, :facebook_messenger]
+      extra_applications: [:logger, :plug, :cowboy, :facebook_messenger, :alexa]
     ]
   end
 
@@ -24,10 +24,11 @@ defmodule Dornbirnfurtbot.MixProject do
     [
       {:facebook_messenger,
        git: "https://github.com/corck/facebook_messenger.git", branch: "broadcast-functionality"},
-      {:plug, "~> 1.4.0"},
-      {:cowboy, "~> 1.1.0"},
+      {:plug, "~> 1.4.4"},
+      {:cowboy, "~> 1.1.2"},
       {:mox, "~> 0.3.1"},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:alexa, "~> 0.1.6"}
     ]
   end
 end

@@ -27,7 +27,8 @@ defmodule Dornbirnfurtbot do
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Dornbirnfurtbot.Router, [], port: port),
-      worker(Dornbirnfurtbot.Waterlevel, [])
+      worker(Dornbirnfurtbot.Waterlevel, []),
+      worker(Dornbirnfurtbot.Alexa.Skill, [[app_id: "dornbirn_furt"]])
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
