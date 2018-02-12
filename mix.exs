@@ -28,8 +28,7 @@ defmodule Dornbirnfurtbot.MixProject do
       {:cowboy, "~> 1.1.2"},
       {:mox, "~> 0.3.1"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
-      {:alexa, "~> 0.1.6"} #,
-      #{:poison, "~> 3.0.0"} 
+      {:alexa, "~> 0.1.6"}
     ]
   end
 end

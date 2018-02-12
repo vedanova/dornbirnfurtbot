@@ -35,10 +35,9 @@ defmodule Dornbirnfurtbot.Waterlevel do
     GenServer.call(__MODULE__, {:get, key})
   end
 
-	def handle_call({:get, key}, _from, state_data) do
-		{:reply, state_data[key], state_data}
-	end
-
+  def handle_call({:get, key}, _from, state_data) do
+    {:reply, state_data[key], state_data}
+  end
 
   # ------ level states
 
@@ -85,10 +84,8 @@ defmodule Dornbirnfurtbot.Waterlevel do
 
   # ------ level states
 
-
-
   # ------ gate states
-  
+
   def new_gate_state(gate_state) do
     GenServer.call(__MODULE__, {:gate_state, gate_state})
   end
@@ -107,9 +104,9 @@ defmodule Dornbirnfurtbot.Waterlevel do
 
   # gate changes to closed
   def check_gate(%{gate_state: :open} = state_data, new_state) when is_closed(new_state) do
-    %{state_data | gate_state: :closed }
+    %{state_data | gate_state: :closed}
     message = "Die Schranke wurde geschlossen!"
-    Logger.info "Broadcasting #{message}"
+    Logger.info("Broadcasting #{message}")
     @broadcaster.broadcast(message, "REGULAR")
     %{state_data | gate_state: :closed}
   end
@@ -118,18 +115,17 @@ defmodule Dornbirnfurtbot.Waterlevel do
   def check_gate(%{gate_state: :closed} = state_data, new_state) when is_open(new_state) do
     %{state_data | gate_state: :open}
     message = "Die Schranke ist wieder offen!"
-    Logger.info "Broadcasting #{message}"
+    Logger.info("Broadcasting #{message}")
     @broadcaster.broadcast(message, "REGULAR")
     %{state_data | gate_state: :open}
   end
 
   def check_gate(state_data, new_state) do
-    Logger.info "Ignoring gate state #{new_state} as it didn't change"
+    Logger.info("Ignoring gate state #{new_state} as it didn't change")
     state_data
   end
 
   # ------ gate states
-  
 
   defp reply_success(state_data, reply), do: {:reply, reply, state_data}
 end
