@@ -3,6 +3,9 @@ defmodule Dornbirnfurtbot.Router do
   require Logger
   import Plug.Conn
   use Plug.Router
+  plug Plug.Static,
+    at: "/",
+    from: :dornbirnfurtbot
 
   plug(Plug.Logger, log: :debug)
 
