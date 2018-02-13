@@ -26,8 +26,17 @@ defmodule Dornbirnfurtbot.Waterlevel do
     {:ok, %{waterlevel: 0, state: :initialized, gate_state: :open}}
   end
 
+  @doc """
+    Update height and check if we should broadcast
+  """
   def new_height(height) do
     GenServer.call(__MODULE__, {:new_height, height})
+  end
+
+  def handle_call({:new_height, height}, _from, state_data) do
+    state_data
+    |> check(height)
+    |> reply_success(:ok)
   end
 
   # return a particular key
