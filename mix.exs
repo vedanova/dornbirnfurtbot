@@ -7,6 +7,7 @@ defmodule Dornbirnfurtbot.MixProject do
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
+      build_embedded: Mix.env() == :prod,
       deps: deps()
     ]
   end
@@ -22,8 +23,10 @@ defmodule Dornbirnfurtbot.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:facebook_messenger,
-       git: "https://github.com/corck/facebook_messenger.git", branch: "broadcast-functionality"},
+      {
+        :facebook_messenger,
+        git: "https://github.com/corck/facebook_messenger.git", branch: "broadcast-functionality"
+      },
       {:plug, "~> 1.4.4"},
       {:cowboy, "~> 1.1.2"},
       {:mox, "~> 0.3.1"},
